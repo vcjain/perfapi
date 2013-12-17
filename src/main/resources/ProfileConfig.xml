@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Note how the aop namespace is defined in the top-level beans element -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                           http://www.springframework.org/schema/aop
+                           http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+                           http://www.springframework.org/schema/context
+						   http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+    <aop:aspectj-autoproxy/>
+    <context:component-scan base-package="com.vcjain" />
+
+    <bean id="timingAspect" class="org.perf4j.log4j.aop.TimingAspect"/>
+
+    <!--
+      Because we included the aspectj-autoproxy element, Spring will automatically
+      create a proxy for this bean that runs the TimingAspect around any public
+      @Profiled methods on this bean.
+    -->
+    
+</beans>
